@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using WebApi.Enitities;
 using WebApi.Data;
 using Microsoft.EntityFrameworkCore;
+using WebApi.DtoParameters;
 
 namespace WebApi.Services
 {
@@ -53,9 +54,30 @@ namespace WebApi.Services
             return await _scoolDbContext.ClassRooms.FirstOrDefaultAsync(x => x.Id == classroomId);
         }
 
-        public async Task<IEnumerable<ClassRoom>> GetClassRoomsAsync()
+        public async Task<IEnumerable<ClassRoom>> GetClassRoomsAsync(ClassDtoParameter classDtoParameter)
         {
-            return await _scoolDbContext.ClassRooms.ToListAsync();
+            if (classDtoParameter == null)
+            {
+                throw new ArgumentNullException(nameof(classDtoParameter));
+            }
+            var item = _scoolDbContext.ClassRooms as IQueryable<ClassRoom>;
+            /*搜索条件为空并名字为空*/
+            if (string.IsNullOrWhiteSpace(classDtoParameter.ClassName) && string.IsNullOrWhiteSpace(classDtoParameter.Search))
+            {
+                return await item.ToListAsync();
+            }
+            if (!string.IsNullOrWhiteSpace(classDtoParameter.ClassName))
+            {
+                classDtoParameter.ClassName = classDtoParameter.ClassName.Trim();
+                item = item.Where(x => x.Name == classDtoParameter.ClassName);
+            }
+            if (!string.IsNullOrWhiteSpace(classDtoParameter.Search))
+            {
+                classDtoParameter.Search = classDtoParameter.Search.Trim();
+                item = item.Where(x => x.Name.Contains(classDtoParameter.Search) || x.Introduction.Contains(classDtoParameter.Search));
+            }
+            return await item.ToListAsync();
+
         }
 
         public async Task<IEnumerable<ClassRoom>> GetClassRoomsAsync(IEnumerable<Guid> classroomguIds)

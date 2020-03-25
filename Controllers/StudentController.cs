@@ -25,13 +25,13 @@ namespace WebApi.Controllers
             _classRoomRepository = classRoomRepository ?? throw new ArgumentNullException(nameof(classRoomRepository));
         }
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<StudentDto>>> GetStudents(Guid ClassId)
+        public async Task<ActionResult<IEnumerable<StudentDto>>> GetStudents(Guid ClassId,[FromQuery]string Gender,string q)
         {
             if (!await _classRoomRepository.ClassRoomExists(ClassId))
             {
                 return NotFound();
             }
-            var Students = await _studentRepository.GetStudentAsync(ClassId);
+            var Students = await _studentRepository.GetStudentAsync(ClassId, Gender, q);
             var StudentsDto = _mapper.Map<IEnumerable<StudentDto>>(Students);
             return Ok(StudentsDto);
 

@@ -8,7 +8,7 @@ namespace WebApi.Services
 {
     public interface IStudentRepository
     {
-        Task<IEnumerable<Student>> GetStudentAsync(Guid classroomId);
+        Task<IEnumerable<Student>> GetStudentAsync(Guid classroomId,string Gender,string q);
         Task<Student> GetStudentAsync(Guid classroomId, Guid studentId);
         void AddStudent(Guid classroomId, Student student);
         void DeleteStudent(Student Student);

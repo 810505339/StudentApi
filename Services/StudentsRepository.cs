@@ -56,13 +56,29 @@ namespace WebApi.Services
 
         }
 
-        public async Task<IEnumerable<Student>> GetStudentAsync(Guid classroomId)
+        public async Task<IEnumerable<Student>> GetStudentAsync(Guid classroomId, string gender, string q)
         {
             if (classroomId == Guid.Empty)
             {
                 throw new ArgumentNullException(nameof(classroomId));
             }
-            return await _scoolDbContext.Student.Where(x => x.ClassId == classroomId).ToListAsync();
+            var item = _scoolDbContext.Student.Where(x => x.ClassId == classroomId);
+            if (string.IsNullOrWhiteSpace(gender) && string.IsNullOrWhiteSpace(q))
+            {
+                return await item.ToListAsync();
+            }
+            if (!string.IsNullOrWhiteSpace(gender))
+            {
+                gender = gender.Trim();
+                var genderDisplay = Enum.Parse<Gender>(gender);
+                item = item.Where(x => x.Gender == genderDisplay);
+            }
+            if (!string.IsNullOrWhiteSpace(q))
+            {
+                q = q.Trim();
+                item = item.Where(x => x.NumberNo.Contains(q) || x.LastName.Contains(q) || x.FirstName.Contains(q));
+            }
+            return await item.ToListAsync();
         }
 
         public void UpdateStudent(Student Student)
@@ -71,7 +87,7 @@ namespace WebApi.Services
         }
         public async Task<bool> SaveAsync()
         {
-            return await _scoolDbContext.SaveChangesAsync()>= 0;
+            return await _scoolDbContext.SaveChangesAsync() >= 0;
         }
     }
 }

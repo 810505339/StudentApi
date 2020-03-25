@@ -6,6 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using WebApi.Services;
 using WebApi.Models;
+using WebApi.DtoParameters;
 
 namespace WebApi.Controllers
 {
@@ -21,9 +22,9 @@ namespace WebApi.Controllers
             _Mapper = Mapper ?? throw new ArgumentNullException(nameof(Mapper));
         }
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<ClassRoomDto>>> GetClassRooms()
+        public async Task<ActionResult<IEnumerable<ClassRoomDto>>> GetClassRooms([FromQuery]ClassDtoParameter classDtoParameter)
         {
-            var ClassRooms = await _classRoomRepository.GetClassRoomsAsync();
+            var ClassRooms = await _classRoomRepository.GetClassRoomsAsync(classDtoParameter);
             var ClassRoomDto = _Mapper.Map<IEnumerable<ClassRoomDto>>(ClassRooms);
             return Ok(ClassRoomDto);
         }
@@ -38,6 +39,12 @@ namespace WebApi.Controllers
             }
             var ClassRoomDto = _Mapper.Map<ClassRoomDto>(ClassRoom);
             return Ok(ClassRoomDto);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> CrateClass() { 
+
+        
         }
     }
 }
