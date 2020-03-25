@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -33,6 +34,7 @@ namespace WebApi
             {
                 setup.RespectBrowserAcceptHeader = false;
             }).AddXmlDataContractSerializerFormatters();
+            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
             services.AddScoped<IClassRoomRepository, ClassRoomRepository>();
             services.AddScoped<IStudentRepository, StudentRepository>();
             services.AddDbContext<ScoolDbContext>(options => options.UseMySql(Configuration.GetConnectionString("mysql")));

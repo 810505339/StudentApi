@@ -71,8 +71,6 @@ F:\MyProject\StudentApi\bin\Debug\netcoreapp3.1\Newtonsoft.Json.dll
 F:\MyProject\StudentApi\bin\Debug\netcoreapp3.1\Pomelo.EntityFrameworkCore.MySql.dll
 F:\MyProject\StudentApi\bin\Debug\netcoreapp3.1\Pomelo.JsonObject.dll
 F:\MyProject\StudentApi\obj\Debug\netcoreapp3.1\WebApi.csprojAssemblyReference.cache
-F:\MyProject\StudentApi\obj\Debug\netcoreapp3.1\WebApi.csproj.CoreCompileInputs.cache
-F:\MyProject\StudentApi\obj\Debug\netcoreapp3.1\WebApi.MvcApplicationPartsAssemblyInfo.cache
 F:\MyProject\StudentApi\obj\Debug\netcoreapp3.1\WebApi.AssemblyInfoInputs.cache
 F:\MyProject\StudentApi\obj\Debug\netcoreapp3.1\WebApi.AssemblyInfo.cs
 F:\MyProject\StudentApi\obj\Debug\netcoreapp3.1\WebApi.RazorTargetAssemblyInfo.cache
@@ -82,3 +80,7 @@ F:\MyProject\StudentApi\obj\Debug\netcoreapp3.1\staticwebassets\WebApi.StaticWeb
 F:\MyProject\StudentApi\obj\Debug\netcoreapp3.1\WebApi.dll
 F:\MyProject\StudentApi\obj\Debug\netcoreapp3.1\WebApi.pdb
 F:\MyProject\StudentApi\obj\Debug\netcoreapp3.1\WebApi.genruntimeconfig.cache
+F:\MyProject\StudentApi\bin\Debug\netcoreapp3.1\AutoMapper.dll
+F:\MyProject\StudentApi\bin\Debug\netcoreapp3.1\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+F:\MyProject\StudentApi\obj\Debug\netcoreapp3.1\WebApi.csproj.CoreCompileInputs.cache
+F:\MyProject\StudentApi\obj\Debug\netcoreapp3.1\WebApi.MvcApplicationPartsAssemblyInfo.cache
