@@ -33,7 +33,6 @@ namespace WebApi
             {
                 setup.RespectBrowserAcceptHeader = false;
             }).AddXmlDataContractSerializerFormatters();
-
             services.AddScoped<IClassRoomRepository, ClassRoomRepository>();
             services.AddScoped<IStudentRepository, StudentRepository>();
             services.AddDbContext<ScoolDbContext>(options => options.UseMySql(Configuration.GetConnectionString("mysql")));

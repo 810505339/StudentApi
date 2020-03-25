@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "8gdZs4xRSzDslrqRkUOF1HHrqQrEF9Wr29rV6QMKOT8Pzg6/bRFUI9L91xZE5aAAYyvFJ/8xyQVfaR99y6XsGA==",
+  "dgSpecHash": "/MD/4/ULV6uEP3H33i3/SR9vWPx3mBBR8e2q3xaMVfgF47S1S4TH5zxPpVfuLSuk/wDvg6qEsgwPHZkr5GYYIg==",
   "success": true,
-  "projectFilePath": "F:\\MyProject\\Visual Stodio\\WebApi\\WebApi.csproj",
+  "projectFilePath": "F:\\MyProject\\StudentApi\\WebApi.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\81050\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\1.1.0\\microsoft.bcl.asyncinterfaces.1.1.0.nupkg.sha512",
     "C:\\Users\\81050\\.nuget\\packages\\microsoft.bcl.hashcode\\1.1.0\\microsoft.bcl.hashcode.1.1.0.nupkg.sha512",

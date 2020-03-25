@@ -938,11 +938,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "F:\\MyProject\\Visual Stodio\\WebApi\\WebApi.csproj",
+      "projectUniqueName": "F:\\MyProject\\StudentApi\\WebApi.csproj",
       "projectName": "WebApi",
-      "projectPath": "F:\\MyProject\\Visual Stodio\\WebApi\\WebApi.csproj",
+      "projectPath": "F:\\MyProject\\StudentApi\\WebApi.csproj",
       "packagesPath": "C:\\Users\\81050\\.nuget\\packages\\",
-      "outputPath": "F:\\MyProject\\Visual Stodio\\WebApi\\obj\\",
+      "outputPath": "F:\\MyProject\\StudentApi\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\81050\\AppData\\Roaming\\NuGet\\NuGet.Config",
