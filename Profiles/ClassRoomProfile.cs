@@ -13,6 +13,7 @@ namespace WebApi.Profiles
         public ClassRoomProfile()
         {
             CreateMap<ClassRoom, ClassRoomDto>().ForMember(dest=>dest.ClassName,opt=>opt.MapFrom(src=>src.Name));
+            CreateMap<ClassAddDto, ClassRoom>().ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.ClassName));
         }
     }
 }

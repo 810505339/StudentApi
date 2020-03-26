@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using WebApi.Services;
 using WebApi.Models;
 using WebApi.DtoParameters;
+using WebApi.Enitities;
 
 namespace WebApi.Controllers
 {
@@ -29,7 +30,7 @@ namespace WebApi.Controllers
             return Ok(ClassRoomDto);
         }
 
-        [HttpGet("{ClassRoomId}")]
+        [HttpGet("{ClassRoomId}",Name =nameof(GetClassRoom))]
         public async Task<ActionResult<ClassRoomDto>> GetClassRoom(Guid ClassRoomId)
         {
             var ClassRoom = await _classRoomRepository.GetClassRoomById(ClassRoomId);
@@ -40,11 +41,17 @@ namespace WebApi.Controllers
             var ClassRoomDto = _Mapper.Map<ClassRoomDto>(ClassRoom);
             return Ok(ClassRoomDto);
         }
-
         [HttpPost]
-        public async Task<IActionResult> CrateClass() { 
+        public async Task<ActionResult<ClassRoomDto>> CreateClass([FromBody]ClassAddDto Class)
+        {
+            var enitite = _Mapper.Map<ClassRoom>(Class);
+            _classRoomRepository.AddClassRoom(enitite);
+            await _classRoomRepository.SaveAsync();
 
-        
+            var ClassDto = _Mapper.Map<ClassRoomDto>(enitite);
+
+            return CreatedAtRoute(nameof(GetClassRoom), new { ClassRoomId = enitite.Id },ClassDto);
         }
+
     }
 }

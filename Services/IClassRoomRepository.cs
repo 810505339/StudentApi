@@ -17,6 +17,7 @@ namespace WebApi.Services
         void DeleteClassRoom(ClassRoom classRoom);
         void UpdateClassRoom(ClassRoom classRoom);
         Task<bool> ClassRoomExists(Guid guid);
-      
+        Task<bool> SaveAsync();
+
     }
 }

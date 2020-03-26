@@ -13,5 +13,6 @@ namespace WebApi.Services
         void AddStudent(Guid classroomId, Student student);
         void DeleteStudent(Student Student);
         void UpdateStudent(Student Student);
+        Task<bool> SaveAsync();
     }
 }

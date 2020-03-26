@@ -15,6 +15,6 @@ namespace WebApi.Enitities
         public string Name { get; set; }
         [MaxLength(200)]
         public string Introduction { get; set; }
-        public ICollection<Student> MyProperty { get; set; }
+        public ICollection<Student> Students { get; set; }
     }
 }

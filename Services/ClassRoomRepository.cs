@@ -23,6 +23,14 @@ namespace WebApi.Services
             {
                 throw new ArgumentNullException(nameof(classRoom));
             }
+            classRoom.Id = Guid.NewGuid();
+            if (classRoom.Students != null)
+            {
+                foreach (var Student in classRoom.Students)
+                {
+                    Student.Id = Guid.NewGuid();
+                }
+            }
             _scoolDbContext.ClassRooms.Add(classRoom);
         }
 
