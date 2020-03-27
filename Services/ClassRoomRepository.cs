@@ -29,6 +29,8 @@ namespace WebApi.Services
                 foreach (var Student in classRoom.Students)
                 {
                     Student.Id = Guid.NewGuid();
+                    //没有指明外键
+                    Student.ClassId = classRoom.Id;
                 }
             }
             _scoolDbContext.ClassRooms.Add(classRoom);

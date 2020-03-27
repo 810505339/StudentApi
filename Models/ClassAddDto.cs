@@ -9,5 +9,6 @@ namespace WebApi.Models
     {
         public string ClassName { get; set; }
         public string Introduction { get; set; }
+        public ICollection<StudentAddDto> Students { get; set; } = new List<StudentAddDto>();
     }
 }

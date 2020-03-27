@@ -47,9 +47,7 @@ namespace WebApi.Controllers
             var enitite = _Mapper.Map<ClassRoom>(Class);
             _classRoomRepository.AddClassRoom(enitite);
             await _classRoomRepository.SaveAsync();
-
             var ClassDto = _Mapper.Map<ClassRoomDto>(enitite);
-
             return CreatedAtRoute(nameof(GetClassRoom), new { ClassRoomId = enitite.Id },ClassDto);
         }
 

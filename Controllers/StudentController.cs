@@ -25,7 +25,7 @@ namespace WebApi.Controllers
             _classRoomRepository = classRoomRepository ?? throw new ArgumentNullException(nameof(classRoomRepository));
         }
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<StudentDto>>> GetStudents(Guid ClassId,[FromQuery]string Gender,string q)
+        public async Task<ActionResult<IEnumerable<StudentDto>>> GetStudents(Guid ClassId, [FromQuery]string Gender, string q)
         {
             if (!await _classRoomRepository.ClassRoomExists(ClassId))
             {
@@ -36,10 +36,10 @@ namespace WebApi.Controllers
             return Ok(StudentsDto);
 
         }
-        [HttpGet("{StudentId}")]
+        [HttpGet("{StudentId}", Name = nameof(GetStudent))]
         public async Task<ActionResult<StudentDto>> GetStudent(Guid ClassId, Guid StudentId)
         {
-           
+
             if (!await _classRoomRepository.ClassRoomExists(ClassId))
             {
                 return NotFound();
@@ -52,5 +52,21 @@ namespace WebApi.Controllers
             var StudentDto = _mapper.Map<StudentDto>(Student);
             return Ok(StudentDto);
         }
+
+        [HttpPost]
+        public async Task<ActionResult<StudentDto>> CreateStudent(Guid ClassId,[FromBody] StudentAddDto studentAddDto)
+        {
+            if (!await _classRoomRepository.ClassRoomExists(ClassId))
+            {
+                return NotFound();
+            }
+            var enitity = _mapper.Map<Student>(studentAddDto);
+            _studentRepository.AddStudent(ClassId, enitity);
+            await _studentRepository.SaveAsync();
+            var StudentDto = _mapper.Map<StudentDto>(enitity);
+            return CreatedAtRoute(nameof(GetStudent), new { ClassId, StudentId= enitity.Id }, StudentDto);
+        }
+
+
     }
 }
