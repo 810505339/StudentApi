@@ -83,7 +83,7 @@ namespace WebApi.Services
 
         public void UpdateStudent(Student Student)
         {
-            throw new NotImplementedException();
+          
         }
         public async Task<bool> SaveAsync()
         {

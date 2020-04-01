@@ -12,6 +12,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Newtonsoft.Json.Serialization;
 using WebApi.Data;
 using WebApi.Services;
 
@@ -34,6 +35,9 @@ namespace WebApi
             services.AddControllers(setup =>
             {
                 setup.RespectBrowserAcceptHeader = false;
+            }).AddNewtonsoftJson(setup =>
+            {
+                setup.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
             }).AddXmlDataContractSerializerFormatters().ConfigureApiBehaviorOptions(setup =>
             {
                 setup.InvalidModelStateResponseFactory = context =>
@@ -49,7 +53,7 @@ namespace WebApi
                     problemDetails.Extensions.Add("traceId", context.HttpContext.TraceIdentifier);
                     return new UnprocessableEntityObjectResult(problemDetails)
                     {
-                        ContentTypes = { "application/problem+json"}
+                        ContentTypes = { "application/problem+json" }
 
                     };
                 };

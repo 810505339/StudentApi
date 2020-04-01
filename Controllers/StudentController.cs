@@ -8,6 +8,7 @@ using WebApi.Services;
 using AutoMapper;
 using WebApi.Models;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.JsonPatch;
 
 namespace WebApi.Controllers
 {
@@ -83,7 +84,30 @@ namespace WebApi.Controllers
             await _studentRepository.SaveAsync();
             return NoContent();
         }
-
+        /// <summary>
+        /// 局部跟新
+        /// </summary>
+        [HttpPatch("{StudentId}")]
+        public async Task<IActionResult> ParialyUpdateStudentForClass(Guid ClassId ,Guid StudentId ,JsonPatchDocument<updateStudentDto> jsonPatchDocument) 
+        {
+            if (!await _classRoomRepository.ClassRoomExists(ClassId))
+            {
+                return NotFound();
+            }
+            var Students = await _studentRepository.GetStudentAsync(ClassId, StudentId);
+            if (Students == null)
+            {
+                return NotFound();
+            }
+            var dtoPatch = _mapper.Map<updateStudentDto>(Students);
+            //需要处理验证错误
+            jsonPatchDocument.ApplyTo(dtoPatch);
+            //映射成数据库类型
+            _mapper.Map(dtoPatch, Students);
+            _studentRepository.UpdateStudent(Students);
+            await _studentRepository.SaveAsync();
+            return NoContent();
+        }
 
     }
 }

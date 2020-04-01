@@ -17,6 +17,7 @@ namespace WebApi.Profiles
             CreateMap<StudentAddDto, Student>();
 
             CreateMap<updateStudentDto, Student>();
+            CreateMap<Student, updateStudentDto > ();
         }
     }
 }

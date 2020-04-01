@@ -82,5 +82,8 @@ F:\MyProject\StudentApi\obj\Debug\netcoreapp3.1\WebApi.pdb
 F:\MyProject\StudentApi\obj\Debug\netcoreapp3.1\WebApi.genruntimeconfig.cache
 F:\MyProject\StudentApi\bin\Debug\netcoreapp3.1\AutoMapper.dll
 F:\MyProject\StudentApi\bin\Debug\netcoreapp3.1\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+F:\MyProject\StudentApi\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.JsonPatch.dll
+F:\MyProject\StudentApi\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
+F:\MyProject\StudentApi\bin\Debug\netcoreapp3.1\Newtonsoft.Json.Bson.dll
 F:\MyProject\StudentApi\obj\Debug\netcoreapp3.1\WebApi.csproj.CoreCompileInputs.cache
 F:\MyProject\StudentApi\obj\Debug\netcoreapp3.1\WebApi.MvcApplicationPartsAssemblyInfo.cache
