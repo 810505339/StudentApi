@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace WebApi.Migrations
 {
-    public partial class InitCreateMigration : Migration
+    public partial class CreateSchooldb : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

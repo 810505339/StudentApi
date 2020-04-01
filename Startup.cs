@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -33,7 +34,26 @@ namespace WebApi
             services.AddControllers(setup =>
             {
                 setup.RespectBrowserAcceptHeader = false;
-            }).AddXmlDataContractSerializerFormatters();
+            }).AddXmlDataContractSerializerFormatters().ConfigureApiBehaviorOptions(setup =>
+            {
+                setup.InvalidModelStateResponseFactory = context =>
+                {
+                    var problemDetails = new ValidationProblemDetails(context.ModelState)
+                    {
+                        Type = "hppt://www.baidu.com",
+                        Title = "”–¥ÌŒÛ",
+                        Status = StatusCodes.Status422UnprocessableEntity,
+                        Detail = "œÍœ∏–≈œ¢",
+                        Instance = context.HttpContext.Request.Path
+                    };
+                    problemDetails.Extensions.Add("traceId", context.HttpContext.TraceIdentifier);
+                    return new UnprocessableEntityObjectResult(problemDetails)
+                    {
+                        ContentTypes = { "application/problem+json"}
+
+                    };
+                };
+            });
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
             services.AddScoped<IClassRoomRepository, ClassRoomRepository>();
             services.AddScoped<IStudentRepository, StudentRepository>();

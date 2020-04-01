@@ -152,7 +152,7 @@ namespace WebApi.Migrations
             modelBuilder.Entity("WebApi.Enitities.Student", b =>
                 {
                     b.HasOne("WebApi.Enitities.ClassRoom", "ClassRoom")
-                        .WithMany("MyProperty")
+                        .WithMany("Students")
                         .HasForeignKey("ClassRoomId");
                 });
 #pragma warning restore 612, 618

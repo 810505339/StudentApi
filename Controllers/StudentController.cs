@@ -54,7 +54,7 @@ namespace WebApi.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<StudentDto>> CreateStudent(Guid ClassId,[FromBody] StudentAddDto studentAddDto)
+        public async Task<ActionResult<StudentDto>> CreateStudent(Guid ClassId, [FromBody] StudentAddDto studentAddDto)
         {
             if (!await _classRoomRepository.ClassRoomExists(ClassId))
             {
@@ -64,7 +64,24 @@ namespace WebApi.Controllers
             _studentRepository.AddStudent(ClassId, enitity);
             await _studentRepository.SaveAsync();
             var StudentDto = _mapper.Map<StudentDto>(enitity);
-            return CreatedAtRoute(nameof(GetStudent), new { ClassId, StudentId= enitity.Id }, StudentDto);
+            return CreatedAtRoute(nameof(GetStudent), new { ClassId, StudentId = enitity.Id }, StudentDto);
+        }
+        [HttpPut("{StudentId}")]
+        public async Task<IActionResult> UpdateStudent(Guid ClassId,Guid StudentId, [FromBody]updateStudentDto updateStudentDto)
+        {
+            if (! await _classRoomRepository.ClassRoomExists(ClassId))
+            {
+                return NotFound();
+            }
+            var Students = await _studentRepository.GetStudentAsync(ClassId, StudentId);
+            if (Students == null)
+            {
+                return NotFound();
+            }
+            _mapper.Map(updateStudentDto, Students);
+            _studentRepository.UpdateStudent(Students);
+            await _studentRepository.SaveAsync();
+            return NoContent();
         }
 
 

@@ -9,8 +9,8 @@ using WebApi.Data;
 namespace WebApi.Migrations
 {
     [DbContext(typeof(ScoolDbContext))]
-    [Migration("20200323121304_InitCreateMigration")]
-    partial class InitCreateMigration
+    [Migration("20200330055345_CreateSchooldb")]
+    partial class CreateSchooldb
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -154,7 +154,7 @@ namespace WebApi.Migrations
             modelBuilder.Entity("WebApi.Enitities.Student", b =>
                 {
                     b.HasOne("WebApi.Enitities.ClassRoom", "ClassRoom")
-                        .WithMany("MyProperty")
+                        .WithMany("Students")
                         .HasForeignKey("ClassRoomId");
                 });
 #pragma warning restore 612, 618

@@ -15,6 +15,8 @@ namespace WebApi.Profiles
             CreateMap<Student, StudentDto>().ForMember(dest => dest.StudentName, opt => opt.MapFrom(src => $"{src.FirstName}{src.LastName}")).ForMember(dest => dest.GenderDisplay, opt => opt.MapFrom(src => src.Gender.ToString()));
 
             CreateMap<StudentAddDto, Student>();
+
+            CreateMap<updateStudentDto, Student>();
         }
     }
 }
